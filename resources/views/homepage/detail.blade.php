@@ -1,6 +1,6 @@
 @extends('layouts.homepage.master')
 @section('title')
-Chi tiết
+{{ $room->tieude }}
 @endsection
 @section('content')
 <div class="container">

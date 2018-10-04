@@ -1,6 +1,6 @@
 @extends('layouts.homepage.master')
 @section('title')
-Phongtrogiare.vn
+Nhatrogiare.vn
 @endsection
 @section('content')
 <div class="container">

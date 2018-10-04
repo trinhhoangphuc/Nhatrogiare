@@ -1,6 +1,6 @@
 @extends('layouts.homepage.master')
 @section('title')
-Đăng Tin
+Danh sách bài đăng
 @endsection
 @section('content')
 <div class="container"> 

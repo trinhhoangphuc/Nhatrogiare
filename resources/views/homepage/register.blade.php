@@ -1,6 +1,6 @@
 @extends('layouts.homepage.master')
 @section('title')
-nhatrogiaregiare.vn
+Đăng Ký
 @endsection
 @section('content')
 <style type="text/css">
