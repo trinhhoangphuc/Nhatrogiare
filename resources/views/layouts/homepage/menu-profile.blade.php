@@ -11,8 +11,7 @@
 		</div>              
 	</div>                                                
 	<div class="profile-userbuttons">                 
-		<button type="button" class="btn btn-warning btn-sm">Trang chủ</button>
-		<button type="button" class="btn btn-default btn-sm">Thoát ra</button>       
+		<button type="button" class="btn btn-default btn-sm" id="logout2">Thoát ra</button>       
 	</div>                                            
 	<div class="profile-usermenu">                    
 		<ul class="nav">                      

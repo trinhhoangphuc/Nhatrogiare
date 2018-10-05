@@ -53,4 +53,6 @@ Route::group(["prefix"=>"/"], function(){
 	Route::post("postRegisterUser", "homepageController@postRegisterUser")->name("postRegisterUser");
 
 	Route::post("changePass", "homepageController@changePass")->name("changePass");
+
+	Route::post("editInfo", "homepageController@editInfo")->name("editInfo");
 });

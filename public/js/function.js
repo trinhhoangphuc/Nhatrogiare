@@ -47,5 +47,22 @@ $(document).ready(function(){
     });
     //End Logout
 
+    //Logout user pages
+    $("#logout2").on("click", function(){
+      $.ajax({
+          type: 'POST',
+          url: 'postLogoutUser',
+          data: {},
+          headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          success: function(data) {
+           if(data.message == true)
+            location.reload();
+        }, error: function() {
+          console.log("loi");
+        }
+      });
+    });
+    //End Logout
+
     
 });

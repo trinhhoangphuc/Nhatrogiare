@@ -66,8 +66,10 @@ class homepageController extends Controller
 	}
 	
 	public function getRoomDetail($id){
-		$room = DB::table("nha")->where("ma", $id)->first();
+		$room = Nha::where("ma", $id)->first();
 		if($room){
+			$room->luotxem += 1;
+			$room->save();
 			$tinh = DB::table("tinh")->where("ma", $room->tinh_ma)->first();
 			$loai = DB::table("loai")->where("ma", $room->loai_ma)->first();
 			$hinh = DB::table("hinh")->where("nha_ma", $room->ma)->get();
@@ -178,7 +180,7 @@ class homepageController extends Controller
 
 	public function getListNews(){
 		if(Auth::user()){
-			$nha = Nha::all();
+			$nha = Nha::where("user_ma", Auth::user()->id)->get();
 			return view("homepage.listnews", compact("nha"));
 		}else{
 			return redirect()->intended("dang-nhap");
@@ -196,6 +198,35 @@ class homepageController extends Controller
 					return redirect()->back()->with("success", "Đổi mật khẩu thành công");
 			}else{
 				return redirect()->back()->with("error", "Đổi mật khẩu không thành công");
+			}
+		}
+	}
+
+	public function editInfo(Request $request){
+		if(Auth::user()){
+			$user = User::where("email", Auth::user()->email)->first();
+			if($user){
+				if($request->hasFile("avtuser")){
+					$img = $request->file("avtuser");
+					$name = "avatar-".rand(1000,100000000)."-".$img->getClientOriginalName();
+					$user->name = $request->name;
+					if($user->avatar == "user.png")
+						$user->avatar = $name;
+					else{
+						unlink(public_path('images/avatar/'.$user->avatar));
+						$user->avatar = $name;
+					}
+					$img->move("public/images/avatar", $name);
+					if($user->save())
+						return redirect()->back()->with("success", "Cập nhật thông tin thành công");
+					else 
+						return redirect()->back()->with("error", "Cập nhật thông tin  không thành công");
+				}else{
+					if($user->save())
+						return redirect()->back()->with("success", "Cập nhật thông tin thành công");
+					else 
+						return redirect()->back()->with("error", "Cập nhật thông tin  không thành công");
+				}
 			}
 		}
 	}

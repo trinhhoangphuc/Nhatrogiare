@@ -51,11 +51,11 @@ Thông tin cá nhân
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10">
 						<div style="text-align: center;"><h3 style="color: #ff9511">Thông tin thành viên</h3></div>
-						<form class="" method="POST" action="" >
+						<form class="" method="POST" action="{{route('editInfo')}}" id="editInfo"enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label " for="name">Họ Tên:</label>
-								<input type="text" class="form-control" name="name" id="name" placeholder="Tên hiển thị">
+								<input type="text" class="form-control" name="name" id="name" placeholder="Tên hiển thị" value="{{Auth::user()->name}}">
 							</div>
 							<div class="form-group">
 								<label class="control-label " for="email">Email liên hệ:</label>
@@ -153,6 +153,21 @@ Thông tin cá nhân
 					equalTo : "Nhập lại mật khẩu không chính xác!",
 					
 				}
+			}
+		});
+	});
+
+	$(function() {
+		$("#editInfo").validate({
+			rules: {
+				name: {   
+					required: true  
+				},
+			},
+			messages: {
+				name: {
+					required: "Xin vui lòng mật khẩu củ"
+				},
 			}
 		});
 	});
