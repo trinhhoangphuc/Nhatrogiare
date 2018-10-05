@@ -118,7 +118,62 @@
 				</div>
 			</div>
 		</div>       
+<script type="text/javascript">
+	$(function() {
+$("#validation").validate({
+    	rules: {
+				txttitle: {   // đây là trường name của input
+					required: true  // không được để trống
+				},
+				txtaddress: {
+					required: true,
+				},
+				txtprice : { 
+					required: true, 
+					number : true, //  bắt buộc là kiểu số
+					digits :true,  // không được tồn tại số âm
+				},
+				txtarea : { 
+					required: true, 
+					number : true, //  bắt buộc là kiểu số
+					digits :true,  // không được tồn tại số âm
+				},
+				txtphone : { 
+					required: true, 
+					number : true, //  bắt buộc là kiểu số
+					digits :true,  // không được tồn tại số âm
+					maxlength: 20
+				}
+			},
+			messages: {
+				txttitle: {
+					required: "Xin vui lòng nhập tên !"
+				},
+				txtaddress: {
+					required: "Xin vui lòng nhập địa chỉ !",
+				},
+				txtphone: {
+					required: "Xin vui lòng nhập số điện thoại !",
+					number : "Số điện thoại bắt buộc là kiểu số !",
+					digits : "Số điện thoại không được nhập số âm !",
+					maxlength : "Số điện thoại không được nhập quá 20 ký tự !"
+				},
+				txtarea: {
+					required: "Xin vui lòng nhập số điện thoại !",
+					number : "Số điện thoại bắt buộc là kiểu số !",
+					digits : "Số điện thoại không được nhập số âm !",
+					
+				},
+				txtprice: {
+					required: "Xin vui lòng nhập số điện thoại !",
+					number : "Số điện thoại bắt buộc là kiểu số !",
+					digits : "Số điện thoại không được nhập số âm !",
 
+				}
+			}
+		});
+	});
+</script>
 		<script>
 			function initMap() {
 				var map = new google.maps.Map(document.getElementById('map'), {
@@ -272,60 +327,4 @@
     }
 </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzlVX517mZWArHv4Dt3_JVG0aPmbSE5mE&callback=initMap&libraries=geometry,places" async defer></script>
-<script type="text/javascript">
-	$(function() {
-$("#validation").validate({
-    	rules: {
-				txttitle: {   // đây là trường name của input
-					required: true  // không được để trống
-				},
-				txtaddress: {
-					required: true,
-				},
-				txtprice : { 
-					required: true, 
-					number : true, //  bắt buộc là kiểu số
-					digits :true,  // không được tồn tại số âm
-				},
-				txtarea : { 
-					required: true, 
-					number : true, //  bắt buộc là kiểu số
-					digits :true,  // không được tồn tại số âm
-				},
-				txtphone : { 
-					required: true, 
-					number : true, //  bắt buộc là kiểu số
-					digits :true,  // không được tồn tại số âm
-					maxlength: 20
-				}
-			},
-			messages: {
-				txttitle: {
-					required: "Xin vui lòng nhập tên !"
-				},
-				txtaddress: {
-					required: "Xin vui lòng nhập địa chỉ !",
-				},
-				txtphone: {
-					required: "Xin vui lòng nhập số điện thoại !",
-					number : "Số điện thoại bắt buộc là kiểu số !",
-					digits : "Số điện thoại không được nhập số âm !",
-					maxlength : "Số điện thoại không được nhập quá 20 ký tự !"
-				},
-				txtarea: {
-					required: "Xin vui lòng nhập số điện thoại !",
-					number : "Số điện thoại bắt buộc là kiểu số !",
-					digits : "Số điện thoại không được nhập số âm !",
-					
-				},
-				txtprice: {
-					required: "Xin vui lòng nhập số điện thoại !",
-					number : "Số điện thoại bắt buộc là kiểu số !",
-					digits : "Số điện thoại không được nhập số âm !",
-
-				}
-			}
-		});
-	});
-</script>
 @endsection

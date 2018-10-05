@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	$url = "http://localhost:8888/nhatrogiare/";
 	
 	//Login to user pages
 	$("#login").on("click", function(){
@@ -10,7 +9,7 @@ $(document).ready(function(){
 		$('#errorLogin').addClass("hidden").text("");
 		$.ajax({
 			type: 'POST',
-			url: $url + 'postLoginUser',
+			url: 'postLoginUser',
 			data: { 'email': $email, 'password': $pass },
 			headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 			success: function(data) {
@@ -35,7 +34,7 @@ $(document).ready(function(){
     $("#logout").on("click", function(){
       $.ajax({
           type: 'POST',
-          url: $url + 'postLogoutUser',
+          url: 'postLogoutUser',
           data: {},
           headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
           success: function(data) {

@@ -48,11 +48,11 @@ class homepageController extends Controller
 		$count_view = DB::table("nha")->select("nha.*", "tinh.ten as tinh_ten", "users.avatar as users_hinh", "users.name as users_ten")
 					->join("tinh", "tinh.ma", "nha.tinh_ma")
 					->join("users", "users.id", "user_ma")
-					->where("nha.trangthai", 1)->orderBy("nha.luotxem", "desc")->limit(12)->get();
+					->where("nha.trangthai", 1)->orderBy("nha.luotxem", "desc")->limit(8)->get();
 		$new = DB::table("nha")->select("nha.*", "tinh.ten as tinh_ten", "users.avatar as users_hinh", "users.name as users_ten")
 				->join("tinh", "tinh.ma", "nha.tinh_ma")
 				->join("users", "users.id", "user_ma")
-				->where("nha.trangthai", 1)->orderBy("nha.capnhat", "asc")->limit(12)->get();
+				->where("nha.trangthai", 1)->orderBy("nha.capnhat", "asc")->limit(8)->get();
 		$tinh = DB::table("tinh")->where("trangthai", 1)->get();
 		$loai = DB::table("loai")->where("trangthai", 1)->get();
 		$max  = DB::table("nha")->max("gia");
