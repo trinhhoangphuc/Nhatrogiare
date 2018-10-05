@@ -14,24 +14,39 @@ Thông tin cá nhân
 				<div class="row">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10">
-						<div style="text-align: center;"><h3 style="color: #ff9511">Cập nhật thông tin</h3></div>
+						<div style="text-align: center;"><h3 style="color: #ff9511">Thông tin tài khoản</h3></div>
+						<form class="" method="POST" action="" >
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							
+							<div class="form-group">
+								<label class="control-label " for="email">Email:</label>
+								<input type="email" class="form-control" name="email" id="email" placeholder="" value="{{ Auth::user()->email }}" readonly>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="pass">Mật khẩu: &nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#resetPass">Thay đổi</a></label>
+								<input type="password" class="form-control" name="pass" id="pass" placeholder="Nhập mật khẩu" readonly value="**************">
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+
+			</div>  
+			<br/>
+			<div class="profile-content">
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10">
+						<div style="text-align: center;"><h3 style="color: #ff9511">Thông tin thành viên</h3></div>
 						<form class="" method="POST" action="" >
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
-								<label class="control-label " for="pwd">Tên hiển thị:</label>
-								<input type="text" class="form-control" name="txtname" placeholder="Tên hiển thị">
+								<label class="control-label " for="name">Họ Tên:</label>
+								<input type="text" class="form-control" name="name" id="name" placeholder="Tên hiển thị">
 							</div>
 							<div class="form-group">
-								<label class="control-label" for="pwd">Mật khẩu cũ:</label>
-								<input type="password" class="form-control" name="txtoldpass" placeholder="Nhập mật khẩu">
-							</div>
-							<div class="form-group">
-								<label class="control-label" for="pwd">Mật khẩu:</label>
-								<input type="password" class="form-control" name="txtpass" placeholder="Nhập mật khẩu">
-							</div>
-							<div class="form-group">
-								<label class="control-label" for="pwd">Nhập lại mật khẩu:</label>
-								<input type="password" class="form-control" name="txt-repass" placeholder="Nhập lại mật khẩu">
+								<label class="control-label " for="email">Email liên hệ:</label>
+								<input type="email" class="form-control" name="email" id="email" placeholder="" value="{{ Auth::user()->email }}" readonly>
 							</div>
 							<div class="form-group">
 								<label for="avtuser" class="control-label">Ảnh đại diện:</label>
@@ -49,14 +64,48 @@ Thông tin cá nhân
 								</div>
 							</div>
 						</form>
-
 					</div>
 					<div class="col-sm-1"></div>
 				</div>
 
-			</div>     
+			</div>   
 		</div>  
 	</div>
+</div>
+<div id="resetPass" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="imgcontainer">
+          <span class="close" data-dismiss="modal" title="Close Modal">&times;</span>
+          <img src="{{asset('public/images/layouts/logo3.png')}}" alt="Avatar" class="avatar">
+        </div>
+      <div class="modal-body">
+      	<form id="changePass" name="changePass" >
+      		<div class="form-group">
+      			<label class="control-label" for="oldpass">Mật khẩu cũ:</label>
+      			<input type="password" class="form-control" name="oldpass" id="oldpass" placeholder="Mật khẩu cũ">
+      		</div>
+      		<div class="form-group">
+      			<label class="control-label" for="newpass">Mật khẩu mới:</label>
+      			<input type="password" class="form-control" name="newpass" id="newpass" placeholder="Mật khẩu mới">
+      		</div>
+      		<div class="form-group">
+      			<label class="control-label" for="repass">nhập lại mật khẩu:</label>
+      			<input type="password" class="form-control" name="repass" id="repass" placeholder="Nhập mật khẩu">
+      		</div>
+      		<button type="submit" class="btn btn-warning" style="width: 100%">Cập Nhật</button>
+      	</form>
+      </div>
+      <div class="footer-modal" style="background-color:#f1f1f1">
+          <button type="button"  data-dismiss="modal" class="btn btn-danger">Hủy</button>
+          <span class="psw">Quên <a href="">mật khẩu?</a></span>
+      </div>
+      
+    </div>
+    </div>
+
+  </div>
 </div>
 @endsection
