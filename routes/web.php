@@ -30,12 +30,13 @@ Route::group(["prefix"=>"/"], function(){
 	})->name("allrooms");
 
 	Route::get("thong-tin", function(){
-		return view('homepage.profile');
+		if(Auth::user())
+			return view('homepage.profile');
+		else 
+			return redirect()->intended("dang-nhap");
 	})->name("profile");
 
-	Route::get("danh-sach", function(){
-		return view('homepage.listnews');
-	})->name("listnews");
+	Route::get("danh-sach", "homepageController@getListNews")->name("listnews");
 
 	Route::get("error", function(){
 		return view('error.404');
@@ -50,4 +51,6 @@ Route::group(["prefix"=>"/"], function(){
 	Route::get("dang-tin", "homepageController@getPostNews")->name("getPostNews");
 
 	Route::post("postRegisterUser", "homepageController@postRegisterUser")->name("postRegisterUser");
+
+	Route::post("changePass", "homepageController@changePass")->name("changePass");
 });

@@ -4,7 +4,20 @@ Thông tin cá nhân
 @endsection
 @section('content')
 <div class="container"> 
-	
+	@if(session("success"))
+	<div class="alert alert-success-alt alert-dismissable fixed-alert">
+		<span class="glyphicon glyphicon-certificate"></span>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		{{session("success")}}
+	</div>
+	@endif
+	@if(session("error"))
+	<div class="alert alert-danger-alt alert-dismissable fixed-alert">
+		<span class="glyphicon glyphicon-certificate"></span>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		{{session("error")}}
+	</div>
+	@endif
 	<div class="row profile">        
 		<div class="col-md-3">          
 			@include("layouts.homepage.menu-profile")    
@@ -82,7 +95,8 @@ Thông tin cá nhân
           <img src="{{asset('public/images/layouts/logo3.png')}}" alt="Avatar" class="avatar">
         </div>
       <div class="modal-body">
-      	<form id="changePass" name="changePass" >
+      	<form id="changePass" name="changePass" action="{{route('changePass')}}" method="POST">
+      		<input type="hidden" name="_token" value="{{ csrf_token() }}">
       		<div class="form-group">
       			<label class="control-label" for="oldpass">Mật khẩu cũ:</label>
       			<input type="password" class="form-control" name="oldpass" id="oldpass" placeholder="Mật khẩu cũ">
@@ -108,4 +122,39 @@ Thông tin cá nhân
 
   </div>
 </div>
+<script type="text/javascript">
+	$(function() {
+		$("#changePass").validate({
+			rules: {
+				oldpass: {   
+					required: true  
+				},
+				newpass : { 
+					required: true, 
+					maxlength:32,
+					minlength:8
+				},
+				repass : { 
+					required: true, 
+					equalTo: "#newpass" 
+				},
+			},
+			messages: {
+				oldpass: {
+					required: "Xin vui lòng mật khẩu củ"
+				},
+				newpass: {
+					required: "Xin vui lòng nhập mật khẩu mới!",
+					maxlength : "Mật khẩu không được quá 32 ký tự",
+					minlength : "Mật khẩu không được nhỏ hơn 8 ký tự",
+				},
+				repass: {
+					required: "Xin vui lòng nhập lại mật khẩu !",
+					equalTo : "Nhập lại mật khẩu không chính xác!",
+					
+				}
+			}
+		});
+	});
+</script>
 @endsection

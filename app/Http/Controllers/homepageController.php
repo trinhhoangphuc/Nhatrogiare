@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+Use Hash;
 use Validator;
 use Auth;
 use Mail;
@@ -176,6 +177,26 @@ class homepageController extends Controller
 	}
 
 	public function getListNews(){
-		
+		if(Auth::user()){
+			$nha = Nha::all();
+			return view("homepage.listnews", compact("nha"));
+		}else{
+			return redirect()->intended("dang-nhap");
+		}
+	}
+
+	public function changePass(Request $request){
+		if(Auth::user()){
+			$user = User::where("email", Auth::user()->email)->first();
+			if(Hash::check($request->oldpass, $user->password)){
+				$user->password = bcrypt($request->newpass);
+				$user->save();
+				Auth::logout();
+				if(Auth::attempt(["email"=>$user->email, "password"=>$request->newpass]))
+					return redirect()->back()->with("success", "Đổi mật khẩu thành công");
+			}else{
+				return redirect()->back()->with("error", "Đổi mật khẩu không thành công");
+			}
+		}
 	}
 }

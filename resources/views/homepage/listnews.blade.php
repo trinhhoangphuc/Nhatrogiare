@@ -29,15 +29,18 @@ Danh sách bài đăng
 										</tr>
 									</thead>
 									<tbody>
-										@for($i=1; $i<=4; $i++)
+										@foreach($nha as $item)
 										<tr>	
-											<td ><p class="content">{{$i}} sdf dfsd fsdj sdbjsd ghjfv sdghjfvsdgj ggjsdg fg hjg sdgjfg hjsdg fhj gsdhjg hjgsd hjgsdhj gfhjsdg  fhjg sdhjfg fhjsg fhj sdhj fghjsdg fhjfg</p></td>
-											<td>{{ number_format($i * 100000, 0, ',', '.') }}</td>
-											<td>{{$i * 2}}</td>
+											<td ><p class="content">{{$item->tieude}}</p></td>
+											<td>{{ number_format($item->gia, 0, ',', '.') }}</td>
+											<td>{{$item->luotxem}}</td>
 											<td>
-												<!-- <span class="label label-success">Đã duyệt</span> -->
-												<!-- <span class="label label-warning">Chờ xử lý</span> -->
+												@if($item->trangthai == 1)
+												<span class="label label-success">Đã duyệt</span>
+												@elseif ($item->trangthai == 0)
+												 <span class="label label-warning">Chờ xử lý</span> @else
 												<span class="label label-danger">Hủy Bỏ</span>
+												@endif
 											</td>
 											<td>
 												<div class="dropdown">
@@ -50,7 +53,7 @@ Danh sách bài đăng
 												</div>
 											</td>
 										</tr>
-										@endfor
+										@endforeach
 									</tbody>
 								</table>
 							</div>
