@@ -267,8 +267,9 @@ $("#validation").validate({
   (
     document.getElementById('location-text-box'));
 
-
   var autocomplete = new google.maps.places.Autocomplete(input);
+   autocomplete.setComponentRestrictions({'country': ['vn'] });
+
   autocomplete.bindTo('bounds', map);
 
   var infowindow = new google.maps.InfoWindow();
