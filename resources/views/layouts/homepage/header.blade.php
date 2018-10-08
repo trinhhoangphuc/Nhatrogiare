@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{route('index')}}"><img src="{{asset('public/images/layouts/logo3.png')}}" width="100%" height="100%" /></a>
+        <a class="navbar-brand" href="{{route('index')}}"></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
