@@ -35,7 +35,7 @@
 	<!-- Bootstrap Select -->
 	<link href="{{asset('public/vendor/homepage/bootstrap-select-1.12.4/css/bootstrap-select.min.css')}}" rel="stylesheet"> 
 	<script type="text/javascript" src="{{asset('public/vendor/homepage/bootstrap-select-1.12.4/js/bootstrap-select.min.js')}}"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
 	<!-- Custom -->
 	<link rel="stylesheet" type="text/css" href="{{asset('public/css/style.css')}}">

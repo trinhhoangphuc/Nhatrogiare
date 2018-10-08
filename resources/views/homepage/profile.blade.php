@@ -43,7 +43,6 @@ Thông tin cá nhân
 					</div>
 					<div class="col-sm-1"></div>
 				</div>
-
 			</div>  
 			<br/>
 			<div class="profile-content">
@@ -92,7 +91,7 @@ Thông tin cá nhân
     <div class="modal-content">
         <div class="imgcontainer">
           <span class="close" data-dismiss="modal" title="Close Modal">&times;</span>
-          <img src="{{asset('public/images/layouts/logo3.png')}}" alt="Avatar" class="avatar">
+          <div></div>
         </div>
       <div class="modal-body">
       	<form id="changePass" name="changePass" action="{{route('changePass')}}" method="POST">
@@ -112,11 +111,6 @@ Thông tin cá nhân
       		<button type="submit" class="btn btn-warning" style="width: 100%">Cập Nhật</button>
       	</form>
       </div>
-      <div class="footer-modal" style="background-color:#f1f1f1">
-          <button type="button"  data-dismiss="modal" class="btn btn-danger">Hủy</button>
-          <span class="psw">Quên <a href="">mật khẩu?</a></span>
-      </div>
-      
     </div>
     </div>
 
