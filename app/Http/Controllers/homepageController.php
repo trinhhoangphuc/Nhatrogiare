@@ -121,6 +121,12 @@ class homepageController extends Controller
     		return redirect()->back()->with("error", "Đăng ký thất bại vui lòng kiểm tra lại thông tin");
     }
 	public function postNews(Request $request){
+
+		$arrlatlng = array();
+		$arrlatlng[] = $request->txtlat;
+		$arrlatlng[] = $request->txtlng;
+		$json_latlng = json_encode($arrlatlng,JSON_FORCE_OBJECT);
+
 		$nha = new Nha();
 		$nha->tieude 	= 	$request->txttitle;
 		$nha->mota 		= 	$request->txtdescription;
@@ -129,8 +135,7 @@ class homepageController extends Controller
 		$nha->luotxem 	= 	0;
 		$nha->diachi 	=	$request->txtaddress;
 		$nha->dienthoai = 	$request->txtphone;
-		$nha->lat 		=	$request->txtlat;
-		$nha->lng		=	$request->txtlng;
+		$nha->latlng 	=	$json_latlng;
 		$nha->hinh 		= 	"noimg.jpg";
 		$nha->user_ma   = 	Auth::user()->id;
 		$nha->loai_ma	=	$request->idcategory;

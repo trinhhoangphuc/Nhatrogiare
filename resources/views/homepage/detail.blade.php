@@ -58,7 +58,7 @@
 									</div>
 								</div>
 								<div class="col-sm-12">
-									<div id="map"></div>
+									<div id="map-detail" style="width: 100%; height: 300px;"></div>
 								</div>
 						</div>
 					</div>
@@ -180,53 +180,62 @@
 </div>
 <script>
 
-  var map;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: new google.maps.LatLng(9.604442100000002, 105.97815370000001),
-      zoom: 15,
-      draggable: true
-    });
-    /* Get latlng vị trí phòng trọ */
-    <?php
-	    $arrmergeLatln[] = ["lat"=> $room->lat,"lng"=> $room->lng,"title"=> $room->tieude];
-	    $js_array = json_encode($arrmergeLatln);
-	    echo "var javascript_array = ". $js_array . ";\n";
-    ?>
-    /* ---------------  */
-    
-    for (i in javascript_array){
-      var data = javascript_array[i];
-      var latlng =  new google.maps.LatLng(data.lat,data.lng);
-      var nhatrogiare = new google.maps.Marker({
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map-detail'), {
+			center: {lat: 10.0242071, lng: 105.76091680000002},
+			zoom: 15,
+			draggable: true
+		});
+		/* Get latlng vị trí phòng trọ */
+		<?php
+			$arrmergeLatln = array();
 
-        position:  latlng,
-        map: map,
-        title: data.title,
-        icon: "../public/images/layouts/gps1.png",
-        content: 'nhatrogiare'
-      });
-      var infowindow = new google.maps.InfoWindow();
-      (function(nhatrogiare, data){
+			$arrlatlng = json_decode($room->latlng,true);
 
-      	var content = data.title;
+			$arrmergeLatln[] = ["lat"=> $arrlatlng[0],"lng"=> $arrlatlng[1],"title"=>$room->tieude,"address"=> $room->diachi,"phone"=> $room->dienthoai];
+			$js_array = json_encode($arrmergeLatln);
+			echo "var javascript_array = ". $js_array . ";\n";
 
-        infowindow.setContent(content);
-        infowindow.open(map, nhatrogiare);
+		?>
+		/* ---------------  */
+		
+		for (i in javascript_array){
+			var data = javascript_array[i];
+			var latlng =  new google.maps.LatLng(data.lat,data.lng);
+			var phongtro = new google.maps.Marker({
+				position:  latlng,
+				map: map,
+				title: data.title,
+				icon: "../public/images/layouts/gps1.png",
+				content: 'dgfdgfdg'
+			});
+			var infowindow = new google.maps.InfoWindow();
+			(function(phongtro, data){
+				var content = data.title;
+				infowindow.setContent(content);
+				infowindow.open(map, phongtro);
+				google.maps.event.addListener(phongtro, "click", function(e){
 
-        google.maps.event.addListener(nhatrogiare, "click", function(e){
+					infowindow.setContent(content);
+					infowindow.open(map, phongtro);
+                  // alert(data.title);
+              });
+			})(phongtro,data);
 
-            infowindow.setContent(content);
-            infowindow.open(map, nhatrogiare);
-                    
-        });
-        })(nhatrogiare,data);
+		}
+		google.maps.event.addListener(map, 'mousemove', function (e) {
+			document.getElementById("flat").innerHTML = e.latLng.lat().toFixed(6);
+			document.getElementById("lng").innerHTML = e.latLng.lng().toFixed(6);
 
-    }
+		});
 
-  }
+
+	}
 
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzlVX517mZWArHv4Dt3_JVG0aPmbSE5mE&callback=initMap"
+async defer></script>
 <script>
 $(document).ready(function(){
 	$("#btnGetPhone").on("click", function(){
@@ -235,5 +244,4 @@ $(document).ready(function(){
 	});
 });
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzlVX517mZWArHv4Dt3_JVG0aPmbSE5mE&callback=initMap&libraries=geometry,places" async defer></script>
 @endsection
